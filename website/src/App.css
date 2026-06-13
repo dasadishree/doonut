@@ -1,10 +1,20 @@
+:root{
+  --bg-paper: #f4f1ea;
+  --teal-dark: #2d6a6d;
+  --teal-medium: #64a6a5;
+  --teal-light: #bfe3db;
+  --washi-tape: rgba(191,227,219, 0.6);
+}
+
 .app-container{
   font-family: sans-serif;
-  color: #fff;
-  background-color: #1a1a1a;
+  color: var(--teal-dark);
+  background-color: var(--bg-paper);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .main-content{
@@ -16,9 +26,48 @@
   padding: 2rem;
 }
 
+.hero{
+  text-align: center;
+  margin-bottom: 1rem;  
+}
+
+.hero h1{
+  font-family: 'Gaegu', cursive;
+  font-size: 3.5rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--teal-dark);
+}
+
+.hero p{
+  font-size: 1.1rem;
+  color: var(--teal-medium);
+  font-style: italic;
+  margin: 0;
+}
+
 .canvas-container{
-  width: 80%;
-  max-width: 800px;
+  background: white;
+  padding: 1.5rem 1.5rem 4.5rem 1.5rem;
+  box-shadow: 0 8px 24px rgba(45, 106, 109, 0.1);
+  border-radius: 4px;
+  transform: rotate(-1.5deg);
+  position: relative;
+  width: 90%;
+  max-width: 550px;
   height: 400px;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.canvas-container::before{
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 35%;
+  width: 140px;
+  height: 35px;
+  background-color: var(--washi-tape);
+  transform: rotate(2.5deg);
+  box-shadow: 0 2px 4px rgba(0,0,0, 0.02);
+  z-index: 10;
 }
