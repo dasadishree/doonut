@@ -20,7 +20,11 @@ function App() {
     <div className="app-container">
       <main className="main-content">
         <section className="hero">
-          <h1>Adishree's 3D Progress</h1>
+          <img
+            src="/name.gif"
+            alt="adishree's 3d website"
+            className="title-gif"
+          />
           <p>See my progress in using Blender / CAD!</p>
         </section>
 
