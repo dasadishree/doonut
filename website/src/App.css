@@ -1,0 +1,43 @@
+.app-container{
+  font-family: sans-serif;
+  color: #fff;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem  2rem;
+  background: #111;
+}
+
+.main-content{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.canvas-container{
+  width: 80%;
+  max-width: 800px;
+  height: 400px;
+  margin-top: 2rem;
+}
+
+.placeholder-box{
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #555;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+

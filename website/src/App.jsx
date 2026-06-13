@@ -1,5 +1,24 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
 import './App.css'
+
+// temporary 3d cube
+function SpinningCube() {
+  const meshRef = useRef()
+  useFrame(() => {
+    if(meshRef.current) {
+      meshRef.current.rotation.x +=0.01
+      meshRef.current.rotation.y += 0.01
+    }
+  })
+  return(
+    <mesh>
+      <boxGeometry args={[1,1,1]}/>
+      <meshStandardMaterial color="#fff7b00"/>
+    </mesh>
+  )
+}
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,9 +39,12 @@ function App() {
         </section>
 
         <section className="canvas-container">
-          <div className="placeholder-box">
-            <span>[ 3D thingie ]</span>
-          </div>
+          <Canvas camera={{position: [0,0,5]}}>
+            <ambientLight intensity={0.5}/>
+            <directionalLight position={[10, 10, 5]} intensity={1}/>
+            <SpinningCube/>
+            <OrbitControls enableZoom={false}/>
+          </Canvas>
         </section>
       </main>
     </div>
