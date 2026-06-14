@@ -1,6 +1,6 @@
 import {  useRef, Suspense, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, useGLTF } from '@react-three/drei'
+import { OrbitControls, useGLTF, Center } from '@react-three/drei'
 import './App.css'
 
 const PROJECTS_DATA = [
@@ -8,11 +8,32 @@ const PROJECTS_DATA = [
     id: 1,
     title: "Bunny",
     date: "July 2025",
-    description: "Simple bunny made using Womp, kinda inspired by Miffy",
-    modelPaths: ["/"]
-  }
+    description: "Simple bunny made using Womp, kinda inspired by Miffy. Made in Tinkercad",
+    modelPaths: ["/bunny.glb"]
+  },
   {
     id: 2,
+    title: "Jeremy (a teacher)",
+    date: "July 2025",
+    description: "Tried to make a silly little mascot/something for my teacher. Made in Womp",
+    modelPaths: ["/jeremy.glb"]
+  },
+  {
+    id: 3,
+    title: "Smiski",
+    date: "Sept/Oct 2025",
+    description: "Attempted to recreate a Smiski. Made in Tinkercad",
+    modelPaths: ["/smiski.glb"]
+  },
+  {
+    id: 4,
+    title: "Adishree Name Keychain",
+    date: "Dec 2025",
+    description: "Made name keychains for myself to put on my backpack. Made in Tinkercad",
+    modelPaths: ["/name.glb"]
+  },
+  {
+    id: 5,
     title: "Smore Game Assets",
     date: "February 2026",
     description: "Making assets for my first 3D Godot game with the help of a tutorial. Made in Blender",
@@ -39,7 +60,16 @@ function Model({path}) {
     }
   })
 
-  return <primitive ref={modelRef} object={scene.clone()} scale={4.5} position={[0,-1,0]}/>
+  return(
+    <Center>
+      <primitive
+        ref={modelRef}
+        object={scene.clone()}
+        scale={4.5}
+        position={[0,0,0]}
+      />
+    </Center>
+  )
 }
 
 // arrows between models
@@ -113,7 +143,7 @@ function App() {
             alt="adishree's 3d website"
             className="title-gif"
           />
-          <p>See my progress in using Blender / CAD! Use your mouse to rotate the models and zoom in or out. During quarantine, I used to be obsessed with making 3D Roblox GFXs. I didn't even know what CAD was and I didn't really understand what I was even doing LOL but I made a bunch of Roblox GFXs using Blender but now I have made it my mission to relearn how to use Blender because I don't remember a thing but I wanna learn. Unfortunately I don't have any of my files from back then though!</p>
+          <p>See my progress in using Blender / CAD! Use your mouse to rotate the models and zoom in or out to adjust the view. During quarantine, I used to be obsessed with making 3D Roblox GFXs. I didn't even know what CAD was and I didn't really understand what I was even doing LOL but I made a bunch of Roblox GFXs using Blender but now I have made it my mission to relearn how to use Blender because I don't remember a thing but I wanna learn. Unfortunately I don't have any of my files from back then though!</p>
         </section>
 
         <div className="scrapbook-feed">
