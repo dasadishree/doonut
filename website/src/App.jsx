@@ -9,7 +9,7 @@ const PROJECTS_DATA = [
     title: "Smore Game Assets",
     date: "February 2026",
     description: "Making assets for my first 3D Godot game with the help of a tutorial",
-    modelPath: "/coin.glb",
+    modelPath: ["/coin.glb", "enemy.glb", "robot.glb", "worldblocks.glb"],
     link: "https://www.youtube.com/playlist?list=PLda3VoSoc_TTp8Ng3C57spnNkOw3Hm_35"
   },
   {
@@ -17,13 +17,13 @@ const PROJECTS_DATA = [
     title: "Donut & Mug Attempt 1",
     date: "June 11-12th, 2026",
     description: "Trying to relearn how to model with Blender with the help of a tutorial",
-    modelPath: "/mug.glb",
+    modelPath: ["/mug.glb"],
     link: "https://www.youtube.com/watch?v=z-Xl9tGqH14"
   }
 ]
 
 // 3d model
-function Model({ path }) {
+function Model({ path, position }) {
   const { scene } = useGLTF(path)
   const modelRef = useRef()
   useFrame(()=>{
@@ -31,7 +31,7 @@ function Model({ path }) {
       modelRef.current.rotation.y+=0.008
     }
   })
-  return <primitive ref={modelRef} object={scene} scale={4.5} position={[0, -1, 0]}/>
+  return <primitive ref={modelRef} object={scene.clone()} scale={2.5} position={position}/>
 }
 
 function App() {
@@ -52,14 +52,39 @@ function App() {
           {PROJECTS_DATA.map((project)=>(
             <div className="scrapbook-item" key={project.id}>
               <div className="canvas-container">
-                <Canvas camera={{position: [0,2,5], fov:45}}>
+                <Canvas camera={{position: [0,3,6], fov:45}}>
                   <ambientLight intensity={0.7}/>
                   <directionalLight position={[10,10,5]} intensity={1.5}/>
                   <directionalLight position={[-10,5,-5]} intensity={0.5}/>
 
                   <Suspense fallback={null}>
-                    <Model path={project.modelPath}/>
-                  </Suspense>
+                    {project.modelPath.map((path,index) => {
+                      const total = project.modelPath.length;
+                      const spacing = 1.8;
+                      let xPosition = 0;
+                      let yPosition = 0;
+
+                      if(total === 1) {
+                        xPosition = 0;
+                        yPosition = -0.5;
+                      } else{
+                        const row = Math.floor(index/2);
+                        const col = index %2;
+                        const xSpacing = 1.6;
+                        const ySpacing = 1.4;
+                        xPosition = (col-0.5)*xSpacing;
+                        yPosition = (0.5-row)*ySpacing-0.5;
+                      }
+
+                      return (
+                        <Model
+                          key={index}
+                          path={path}
+                          position={[xPosition, yPosition, 0]}
+                        />
+                      )
+                    })}
+                    </Suspense>
                   <OrbitControls enableZoom={true}/>
                 </Canvas>
               </div>
@@ -68,7 +93,9 @@ function App() {
               <span className="entry-date">{project.date}</span>
               <h2 className="entry-title">{project.title}</h2>
               <p className="entry-description">{project.description}</p>
-              <a href={project.link} target="_blank" rel="noreferrer" className="entry-link">View Project Details ➜</a>
+              {project.link && (
+                <a href={project.link} target="_blank" rel="noreferrer" className="entry-link">View Project Details ➜</a>
+              )}
             </div>
           </div>
         ))}
