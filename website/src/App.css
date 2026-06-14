@@ -1,3 +1,4 @@
+/* overall styling */
 :root{
   --bg-paper: #f4f1ea;
   --teal-dark: #2d6a6d;
@@ -5,7 +6,6 @@
   --teal-light: #bfe3db;
   --washi-tape: rgba(191,227,219, 0.6);
 }
-
 .app-container{
   font-family: sans-serif;
   color: var(--teal-dark);
@@ -16,28 +16,24 @@
   padding: 2rem;
   box-sizing: border-box;
 }
-
 .main-content{
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
+/* hero/title area */
 .hero{
   text-align: center;
-  margin-bottom: 1rem;  
+  margin-bottom: 3rem;  
 }
-
-.hero h1{
-  font-family: 'Gaegu', cursive;
-  font-size: 3.5rem;
-  margin: 0 0 0.5rem 0;
-  color: var(--teal-dark);
+.title-gif{
+  max-width: 450px;
+  width: 100%;
+  height: auto;
 }
-
 .hero p{
   font-size: 1.1rem;
   color: var(--teal-medium);
@@ -45,6 +41,24 @@
   margin: 0;
 }
 
+
+/* scrapbook logs */
+.scrapbook-feed{
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  width: 100%;
+  align-items: center;
+}
+.scrapbook-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* polaroid */
 .canvas-container{
   background: white;
   padding: 1.5rem 1.5rem 4.5rem 1.5rem;
@@ -59,15 +73,61 @@
   border: 1px solid rgba(0,0,0,0.03);
 }
 
+.scrapbook-item:nth-child(even) .canvas-container {
+  transform: rotate(1.5deg);
+}
+
 .canvas-container::before{
   content: '';
   position: absolute;
-  top: -16px;
+  top: -15px;
   left: 35%;
-  width: 140px;
-  height: 35px;
+  width: 130px;
+  height: 32px;
   background-color: var(--washi-tape);
-  transform: rotate(2.5deg);
-  box-shadow: 0 2px 4px rgba(0,0,0, 0.02);
+  transform: rotate(2deg);
   z-index: 10;
+}
+
+/* details */
+.journal-details{
+  text-align: center;
+  margin-top: 1.5rem;
+  width: 90%;
+}
+.entry-date{
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--teal-medium);
+  font-weight: 700;
+}
+.entry-title{
+  font-family: 'Gaegu', cursive;
+  font-size: 2.3rem;
+  margin: 0.2rem 0 0.6rem 0;
+  color: var(--teal-dark);
+}
+.entry-description{
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #5a7a7b;
+  margin: 0 0 1.2rem 0;
+}
+.entry-link{
+  display: inline-block;
+  background-color: transparent;
+  color: var(--teal-dark);
+  border: 2px dashed var(--teal-medium);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+.entry-link:hover{
+  background-color: var(--teal-light);
+  border-style: solid;
+  transform: translateY(-2px);
 }

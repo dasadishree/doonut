@@ -45,7 +45,7 @@ function App() {
             alt="adishree's 3d website"
             className="title-gif"
           />
-          <p>See my progress in using Blender / CAD!</p>
+          <p>See my progress in using Blender / CAD! Use your mouse to rotate the models and zoom in or out. During quarantine, I used to be obsessed with making 3D Roblox GFXs. I didn't even know what CAD was and I didn't really understand what I was even doing LOL but I made a bunch of Roblox GFXs using Blender but now I have made it my mission to relearn how to use Blender because I don't remember a thing but I wanna learn</p>
         </section>
 
         <div className="scrapbook-feed">
