@@ -6,17 +6,24 @@ import './App.css'
 const PROJECTS_DATA = [
   {
     id: 1,
+    title: "Bunny",
+    date: "July 2025",
+    description: "Simple bunny made using Womp, kinda inspired by Miffy",
+    modelPaths: ["/"]
+  }
+  {
+    id: 2,
     title: "Smore Game Assets",
     date: "February 2026",
-    description: "Making assets for my first 3D Godot game with the help of a tutorial",
-    modelPaths: ["/coin.glb", "enemy.glb", "robot.glb", "worldblocks.glb"],
+    description: "Making assets for my first 3D Godot game with the help of a tutorial. Made in Blender",
+    modelPaths: ["/coin.glb", "/enemy.glb", "/robot.glb", "/worldblocks.glb"],
     link: "https://www.youtube.com/playlist?list=PLda3VoSoc_TTp8Ng3C57spnNkOw3Hm_35"
   },
   {
-    id: 2,
+    id: 3,
     title: "Donut & Mug Attempt 1",
     date: "June 11-12th, 2026",
-    description: "Trying to relearn how to model with Blender with the help of a tutorial",
+    description: "Trying to relearn how to model with Blender with the help of a tutorial. Made in Blender",
     modelPaths: ["/mug.glb"],
     link: "https://www.youtube.com/watch?v=z-Xl9tGqH14"
   }
@@ -46,16 +53,29 @@ function ScrapbookItem({project}) {
     setCurrentIndex((prev) => (prev-1+totalModels) % totalModels)
   }
 
+  const getModelLabel = (path) => {
+    if(!path) return ""
+    return path.replace(/^\//, '').replace(/\.[^/.]+$/,'')
+  }
   return (
     <div className="scrapbook-item">
       <div className="canvas-container">
-        {totalModels > 1 && (
-          <div className="carousel-controls">
+        <div className="carousel-controls">
+        {totalModels > 1 ? (
+          <>
             <button onClick={prevModel} className="arrow-btn left">◀</button>
-            <span className="model-counter">{currentIndex+1} / {totalModels}</span>
+            <div className="counter-container">
+              <span className="model-counter">{currentIndex+1} / {totalModels}</span>
+              <span className="model-label">{getModelLabel(project.modelPaths[currentIndex])}</span>
+            </div>
             <button onClick={nextModel} className="arrow-btn right">▶</button>
+          </>
+        ) : (
+          <div className="counter-container central-label">
+            <span className="model-label">{getModelLabel(project.modelPaths[0])}</span>
           </div>
         )}
+        </div>
 
         <Canvas camera={{position: [0,2,5], fov:45}}>
           <ambientLight intensity={0.7}/>

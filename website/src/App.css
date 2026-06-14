@@ -44,10 +44,14 @@
 /* scrapbook logs */
 .scrapbook-feed{
   display: flex;
-  flex-direction: column;
-  gap: 5rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4rem 3rem;
   width: 100%;
-  align-items: center;
+  max-width: 1200px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 2rem;
 }
 .scrapbook-item{
   display: flex;
